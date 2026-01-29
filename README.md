@@ -1,4 +1,14 @@
 
+uv
+
+```
+uv venv --python 3.12
+source .venv/bin/activate
+echo $VIRTUAL_ENV
+uv sync
+uv run python --version
+```
+
 Demo
 
 https://www.youtube.com/watch?v=-40SDvznhzg

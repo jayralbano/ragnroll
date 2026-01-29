@@ -1,8 +1,19 @@
+#!/usr/bin/env python3
 import time
 from faster_whisper import WhisperModel
 import sys
 import os
 import subprocess
+
+
+def format_timestamp(seconds):
+    """Convert seconds to SRT timestamp format: HH:MM:SS,mmm"""
+    hours = int(seconds // 3600)
+    minutes = int((seconds % 3600) // 60)
+    secs = int(seconds % 60)
+    millis = int((seconds % 1) * 1000)
+    return f"{hours:02d}:{minutes:02d}:{secs:02d},{millis:03d}"
+
 
 source = sys.argv[1]
 source_dir = os.path.dirname(source)
@@ -19,9 +30,9 @@ else:
     print(f"\n\nConverting {source} to {output_audio_filename}\n\n")
     subprocess.run(["ffmpeg", "-i", source, "-q:a", "0", "-map", "a", output_audio_path])
 
-print(f"\n\nTranscribing {output_audio_filename}\n\n")
+print(f"\n\nTranscribing {output_audio_filename} and generating SRT subtitles\n\n")
 
-output_filename = f"{source_filename}_transcribed.txt"
+output_filename = f"{source_filename}_subtitles.srt"
 output_path = os.path.join(source_dir, output_filename)
 
 start_time = time.time()
@@ -40,13 +51,20 @@ segments, info = model.transcribe(
 
 print(f"Detected language '{info.language}' with probability {info.language_probability}")
 
-# Collect all segments into a single text
-transcription_text = " ".join([segment.text for segment in segments])
+# Write SRT file
+with open(output_path, "w", encoding="utf-8") as f:
+    for i, segment in enumerate(segments, start=1):
+        # SRT format:
+        # 1
+        # 00:00:00,000 --> 00:00:02,500
+        # Subtitle text
+        # [blank line]
+        f.write(f"{i}\n")
+        f.write(f"{format_timestamp(segment.start)} --> {format_timestamp(segment.end)}\n")
+        f.write(f"{segment.text.strip()}\n")
+        f.write("\n")
 
 end_time = time.time()
 
-# write to file
-with open(output_path, "w") as f:
-    f.write(transcription_text)
-
-print(f"\n\nDone. Time taken: {end_time - start_time} seconds\n\n")
+print(f"\n\nDone. SRT file saved to: {output_filename}")
+print(f"Time taken: {end_time - start_time:.2f} seconds\n\n")

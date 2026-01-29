@@ -1,30 +1,37 @@
-[tool.poetry]
+[project]
 name = "ragnroll"
 version = "0.1.0"
 description = ""
-authors = ["Jay-r Albano <jayrcodes@outlook.ph>"]
+authors = [
+    {name = "Jay-r Albano", email = "jayrcodes@outlook.ph"}
+]
 readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.12"
-langchain = "^0.3.10"
-langchain-community = "^0.3.10"
-python-dotenv = "^1.0.1"
-qdrant-client = "^1.12.1"
-beautifulsoup4 = "^4.12.3"
-pymupdf = "^1.25.0"
-torch = "^2.5.1"
-transformers = "^4.47.1"
-fastapi = "^0.115.6"
-uvicorn = "^0.34.0"
-pydash = "^8.0.4"
-langchain-ollama = "^0.2.2"
-openai = "^1.60.0"
-rich = "^13.9.4"
-langchain-openai = "^0.3.4"
-langchain-core = "^0.3.34"
-
+requires-python = ">=3.12"
+dependencies = [
+    "langchain>=0.3.10",
+    "langchain-community>=0.3.10",
+    "python-dotenv>=1.0.1",
+    "qdrant-client>=1.12.1",
+    "beautifulsoup4>=4.12.3",
+    "pymupdf>=1.25.0",
+    "torch>=2.5.1",
+    "transformers>=4.47.1",
+    "fastapi>=0.115.6",
+    "uvicorn>=0.34.0",
+    "pydash>=8.0.4",
+    "langchain-ollama>=0.2.2",
+    "openai>=1.60.0",
+    "rich>=13.9.4",
+    "langchain-openai>=0.3.4",
+    "langchain-core>=0.3.34",
+    "torchaudio>=2.9.1",
+    "soundfile>=0.13.1",
+    "faster-whisper>=1.2.1",
+]
 
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["utils"]
