@@ -32,13 +32,16 @@ else:
 
 print(f"\n\nTranscribing {output_audio_filename} and generating SRT subtitles\n\n")
 
-output_filename = f"{source_filename}_subtitles.srt"
+# Get base filename without extension and add .srt
+base_filename = os.path.splitext(source_filename)[0]
+output_filename = f"{base_filename}.srt"
 output_path = os.path.join(source_dir, output_filename)
 
 start_time = time.time()
 
 # Load Whisper model with faster-whisper
 # Use "small" model, runs on CPU by default but should also work on MPS/GPU
+# model = WhisperModel("small", device="cpu", compute_type="int8")
 model = WhisperModel("small", device="cpu", compute_type="int8")
 
 # Transcribe the audio
