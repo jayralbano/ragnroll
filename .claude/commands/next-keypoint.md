@@ -12,16 +12,18 @@ Extract the next keypoint from a transcription file.
    - At the START of the keypoint section: `--- KEYPOINT <number> START: <short title> ---`
    - At the END of the keypoint section: `--- KEYPOINT <number> END: <short title> ---`
 
-4. **Append to keypoints collection** — The keypoints md file is ALWAYS stored in the project root directory (`/home/jayrpc/Developer/ragnroll/keypoints/`), never alongside the transcription. If no `keypoints_<source_filename>.md` exists in the project dir, create it with a `# Keypoints` heading and the source filename. Append the new keypoint as a numbered bullet with a concise 1-2 sentence summary.
+4. **Append to keypoints collection** — The keypoints md file is ALWAYS stored in the project keypoints directory (`/Users/jayr/Developer/ragnroll/keypoints/`), never alongside the transcription. The filename uses the format `kp-<ai-generated-short-title>-<original-filename>.md` with all spaces replaced by dashes and absolutely no spaces in the filename. If the file doesn't exist yet, create it with a `# Keypoints` heading and the source filename. Append the new keypoint as a numbered bullet with a concise 1-2 sentence summary.
 
 5. **Show the user** — Print the keypoint you just extracted.
 
 ## File naming convention
 
-Given a source transcription at `/path/to/video.mp4_transcribed.txt`:
-- Working copy: `/path/to/video.mp4_keypoints_copy.txt` (alongside the transcription)
-- Keypoints collection: `/home/jayrpc/Developer/ragnroll/keypoints/keypoints_video.mp4.md` (always in keypoints/ folder, tracked by git)
+Given a source transcription at `/path/to/2026-03-05 01-43-57 long meeting big change.mp4_transcribed.txt`:
+- Working copy: `/path/to/2026-03-05 01-43-57 long meeting big change.mp4_keypoints_copy.txt` (alongside the transcription)
+- Keypoints collection: `/Users/jayr/Developer/ragnroll/keypoints/kp-<short-title>-2026-03-05-01-43-57-long-meeting-big-change.mp4.md` (always in keypoints/ folder, tracked by git)
+- The `<short-title>` is a brief AI-generated descriptor of the meeting's main theme (e.g., `platform-strategy`, `ai-workflow-review`)
+- All dashes, absolutely no spaces in the filename
 
 ## Usage
 
-The user will provide the transcription file path on first use. On subsequent `/next-keypoint` calls, continue from where you left off using the `---` markers in the working copy.
+The user will provide the transcription file path on first use. On subsequent `/next-keypoint` calls, continue from where you left off using the `\n---...\n` markers in the working copy.
