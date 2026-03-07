@@ -21,7 +21,7 @@ else:
     print(f"\nConverting {source_filename} to MP3\n")
     subprocess.run(["ffmpeg", "-i", source, "-q:a", "0", "-map", "a", output_audio_path])
 
-output_filename = f"{source_filename}_transcribed.txt"
+output_filename = f"{base_filename}_transcribed.txt"
 output_path = os.path.join(source_dir, output_filename)
 
 print(f"\nTranscribing with mlx-whisper (Metal GPU) → {output_filename}\n")

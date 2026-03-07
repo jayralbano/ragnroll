@@ -1,4 +1,27 @@
 
+```
+use agent team, team lead ask agent for /next-keypoint and reports back, with auditor, and team lead will ask agent again
+```
+
+tmux split
+```
+Ctrl + b
+release
+%
+```
+
+tmux horizontal split
+```
+Ctrl + b
+release
+"
+```
+
+tmux switch panes
+```
+Ctrl + b  →  Arrow key
+```
+
 uv
 
 ```
