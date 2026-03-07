@@ -11,11 +11,11 @@ Move transcription source files to the archive folder after keypoint extraction 
    - `_keypoints_copy.txt` (working copy)
    - `.srt` (subtitles, if exists)
 
-2. **Ask for description** — Ask the user: "Add a description to the filename? (e.g. `scrum`, `huddle mihai`) or press Enter to skip."
+2. **Infer description** — Check the keypoints file in `keypoints/` for context. If the filename already contains a description (e.g. `2026-03-03 22-32-11 scrum.mp4`), keep it. Otherwise, infer from content: daily standup/scrum → `scrum`, huddle → `huddle`, etc. Default to `scrum` if it's a daily meeting.
 
 3. **Move files** — Move all found files to `~/Desktop/archive/`:
-   - If a description is provided, insert it after the timestamp: `2026-03-03 22-32-11 scrum.mp4`
-   - If no description, move files as-is without renaming
+   - Insert the description after the timestamp: `2026-03-03 22-32-11 scrum.mp4`
+   - Do NOT ask the user for confirmation — this is fully autonomous
 
 4. **Confirm** — List the files that were moved.
 

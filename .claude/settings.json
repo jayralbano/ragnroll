@@ -1,0 +1,22 @@
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "preferences": {
+    "tmuxSplitPanes": true
+  },
+  "permissions": {
+    "allow": [
+      "Bash",
+      "Bash(grep:*)",
+      "Write",
+      "Edit",
+      "WebSearch"
+    ],
+    "deny": [
+      "Read(.env)"
+    ],
+    "defaultMode": "acceptEdits",
+    "ask": []
+  }
+}

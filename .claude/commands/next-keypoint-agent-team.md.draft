@@ -1,0 +1,8 @@
+create an agent team, team lead will ask agent for /next-keypoint and  with agent auditor[.claude/agents/transcription-auditor.md] will audit it and reports back, and team lead will repeat the same process until all keypoints are generated.
+
+After all of the keypoints are generated. run /archive automatically without asking.
+
+- play this when transcribing is done - Bash(afplay ~/Downloads/mixkit-video-game-treasure-2066.wav)   
+- play this for each keypoint extracted - Bash(afplay ~/Downloads/mixkit-sci-fi-positive-notification-266.wav)   
+- play this for each audited keypoint done - Bash(afplay ~/Downloads/mixkit-video-game-treasure-2066.wav)   
+- play this once the whole keypoints has been extracted - Bash(afplay ~/Downloads/mixkit-game-bonus-reached-2065.wav)             
